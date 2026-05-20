@@ -2,6 +2,16 @@
 
 > This root `CLAUDE.md` is the main project-wide entrypoint for Claude Code. `./dotclaude/` remains the plugin source folder and can be referenced for additional implementation details.
 
+## Obsidian Vault
+
+Your Obsidian vault is in the project root at `./obsidian/`.
+
+- **Vault Path**: `./obsidian/`
+- **Prompts Folder**: `./obsidian/Prompts/`
+- **Memory Folder**: `./obsidian/Memory/`
+
+See `./dotclaude/obsidian/setup.md` for sync instructions and templates.
+
 ## Commands
 
 ```bash

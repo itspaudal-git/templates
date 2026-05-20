@@ -403,7 +403,111 @@ Delegates to code, security, performance, and doc reviewers.
 
 ---
 
-## Step 8: Troubleshooting
+## Step 8: Integrate with Obsidian (Your Second Brain)
+
+If you use Obsidian, sync your prompts and memories to your vault for cross-project reference.
+
+### Quick Setup
+
+1. **Vault is already set up** at `./obsidian/` in your project root
+   - Check root `CLAUDE.md` for vault path
+   - Prompts sync to `./obsidian/Prompts/`
+   - Memories sync to `./obsidian/Memory/`
+
+2. **Folders already exist in `./obsidian/`**
+   ```
+   ./obsidian/
+   ├── Prompts/
+   ├── Memory/
+   └── Index.md
+   ```
+
+3. **Sync your prompts to `./obsidian/Prompts/`**
+   ```bash
+   cp -r .claude/prompts/* ./obsidian/Prompts/
+   ```
+   - Manual: Copy `.claude/prompts/` files to `./obsidian/Prompts/`
+   - Ask Claude: "Export this to ./obsidian/Prompts/[domain]/"
+   - Git: Both `.claude/prompts/` and `./obsidian/` are tracked together
+
+4. **Build your graph**
+   - Add tags to organize prompts
+   - Use backlinks to connect related prompts and memories
+   - Use Obsidian graph view to see connections
+
+See [dotclaude/obsidian/setup.md](obsidian/setup.md) for detailed integration instructions.
+
+---
+
+## Step 9: Build Your Prompt Library
+
+Over time, you'll discover prompts that work really well. Save them so you can reuse and refine them.
+
+### Why Save Prompts?
+
+- Reuse successful approaches across projects
+- Build a personal reference library
+- Document the evolution from "broken English" to refined prompts
+- Share best practices with team members
+
+### How to Organize Prompts
+
+1. **Create your first prompt**
+   ```bash
+   mkdir -p .claude/prompts/[domain]
+   touch .claude/prompts/[domain]/prompt-name.md
+   ```
+
+2. **Choose an organization strategy**
+   - **By Domain** (backend, frontend, testing, debugging)
+   - **By Skill Type** (/tdd, /refactor, /ship, /debug-fix)
+   - **By Project** (if managing multiple projects)
+
+   See [prompts/README.md](prompts/README.md) for detailed strategies.
+
+3. **Save prompts with context**
+   ```markdown
+   ---
+   topic: "API Design"
+   tags: ["backend", "validation"]
+   ---
+
+   # My API Design Prompt
+
+   ## Original (Broken English)
+   > how do i design api that validates all input really good
+
+   ## Refined Prompt
+   [Your improved version]
+
+   ## When to Use
+   [When this works best]
+   ```
+
+### Example: Save Your First Prompt
+
+After a successful conversation:
+
+```
+Create a file .claude/prompts/backend/api-validation.md with:
+- My original broken phrasing
+- The refined version that worked
+- When to use it
+```
+
+Claude can organize and file this for you automatically.
+
+### Organize as You Grow
+
+Your prompt library will grow naturally. Each month:
+- Move rarely-used prompts to `_archive/`
+- Consolidate similar variations
+- Update tags for easier discovery
+- Share with team in `.claude/` git commits
+
+---
+
+## Step 10: Troubleshooting
 
 ### Skills or agents don't appear
 
@@ -468,7 +572,7 @@ Files should be readable/writable by your user.
 
 ---
 
-## Step 9: Best Practices Summary
+## Step 11: Best Practices Summary
 
 ### Project Organization
 
@@ -509,6 +613,8 @@ Files should be readable/writable by your user.
 | Create a workflow | Create `.claude/skills/my-skill/SKILL.md` |
 | Add a specialist | Create `.claude/agents/my-agent.md` |
 | Remember something | Tell Claude: "Remember: [fact]" or edit `/memories/` directly |
+| Save a working prompt | Create `.claude/prompts/[domain]/name.md` with context |
+| Reuse a saved prompt | Copy from `.claude/prompts/` and adapt for new task |
 | Check what Claude sees | Run `/context-budget` |
 | Review code safely | Use `/pr-review [PR#]` |
 | Write tests first | Use `/tdd [feature description]` |
@@ -518,12 +624,14 @@ Files should be readable/writable by your user.
 
 ---
 
-## Next Steps
+## Step 12: Next Steps
 
 1. ✅ Run `/setupdotclaude` to customize for your project
 2. ✅ Enable hooks with `chmod +x .claude/hooks/*.sh`
 3. ✅ Review `.claude/rules/` and add project-specific rules
 4. ✅ Start using `/tdd`, `/debug-fix`, or `/ship` on your next task
 5. ✅ Document your first memory with `/memories/repo/`
+6. ✅ Save your first working prompt to `.claude/prompts/`
+7. ✅ Integrate with Obsidian using `.claude/obsidian/setup.md`
 
 Happy coding! 🚀
