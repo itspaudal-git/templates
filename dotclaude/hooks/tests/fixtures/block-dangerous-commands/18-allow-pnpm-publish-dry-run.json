@@ -1,0 +1,5 @@
+{
+  "name": "allow pnpm publish --dry-run",
+  "stdin": { "tool_input": { "command": "pnpm publish --dry-run" } },
+  "expect_exit": 0
+}
